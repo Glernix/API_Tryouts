@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        height: fit-content;
+        width: fit-content;
+        min-width: 50px;
+        min-height: 50px;
+        background-image: linear-gradient(
+          to right,
+          rgb(37, 232, 229),
+          rgb(223, 64, 64)
+        );
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+      a {
+        display: none;
+      }
+    </style>
+  </head>
+  <body style="background-color: #d4dcd7">
+    <div class="container">
+      <div class="card">
+        <form action="/action_page.php">
+          <label for="fname">Github Name:</label>
+          <input type="text" id="fname" name="fname" /><br />
+        </form>
+        <button id="show">Fetch</button>
+        <img id="profile" src="#" alt="Demo image" style="display: none" />
+        <div id="name"></div>
+        <div id="bio"></div>
+        <div id="follower"></div>
+        <div id="following"></div>
+        <div id="location"></div>
+        <div></div>
+          <a href="#" id="page_link">Go to github account</a>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+  <script>
+    const img = document.getElementById("profile");
+    const username = document.getElementById("name");
+    const follower = document.getElementById("follower");
+    const following = document.getElementById("following");
+    const page_url = document.getElementById("page_link");
+    const user_loc = document.getElementById("location");
+    const bio_info=document.getElementById("bio");
+
+    // const requestUrl = "https://66ec74be2b6cf2b89c5e7def.mockapi.io/blogs";
+    // const xhr = new XMLHttpRequest();
+    // xhr.open("GET", requestUrl);
+    // xhr.onreadystatechange = async function () {
+    //   console.log(xhr.readyState);
+    //   if (xhr.readyState === 4) {
+    //     const data = JSON.parse(this.responseText);
+    //     console.log(data[1]);
+    //     console.log("follower:", data[1].follower);
+    //     console.log(data[1].avatar);
+    //     src = data[1].avatar;
+    //     num = data[1].follower;
+    //   }
+    // };
+    // xhr.send();
+
+    function show() {
+      const inputValue = document.getElementById("fname").value;
+      const fetchUrl = `https://api.github.com/users/${inputValue}`;
+      fetch(fetchUrl)
+        .then((data) => {
+          return data.json();
+        })
+        .then((data) => {
+          img.style.display = "block";
+          img.setAttribute("src", data.avatar_url);
+          username.innerHTML = `Username: ${data.name}`;
+          bio_info.innerHTML=`Bio : ${data.bio}`;
+          follower.innerHTML = `follower : ${data.followers}`;
+          following.innerHTML = `Following : ${data.following}`;
+          page_url.setAttribute("href", data.html_url);
+          page_url.style.display = "block";
+          user_loc.innerHTML = `Location : ${data.location}`;
+        });
+    }
+    document.getElementById("show").addEventListener("click", show);
+  </script>
+</html>
