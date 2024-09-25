@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>API TRIAL TWO-Weather App</title>
+    <style>
+      /* General container styling */
+      .container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+      }
+
+      /* Card styling */
+      .card {
+        padding: 15px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Label styling */
+      label {
+        display: block;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      /* Input field styling */
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      /* Button styling */
+      button {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Headings and paragraph styling */
+      h3 {
+        font-size: 18px;
+        color: #007bff;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <form>
+          <label for="city_input">City:</label>
+          <input type="text" id="city_input" name="fname" /><br />
+        </form>
+        <button type="submit" id="fetch">Fetch</button>
+        <h3 id="city"></h3>
+        <p id="lat_long"></p>
+        <p id="tempreture"></p>
+        <p id="feelsLike"></p>
+        <p id="wind_kmph"></p>
+        <p id="cloud"></p>
+        <p id="humidity"></p>
+        <p id="pressure"></p>
+        <p id="sunrise"></p>
+        <p id="sunset"></p>
+        <p id="visibility"></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    let city = document.getElementById("city");
+    let lat_long = document.getElementById("lat_long");
+    let tempreture = document.getElementById("tempreture");
+    let feelsLike = document.getElementById("feelsLike");
+    let wind_kmph = document.getElementById("wind_kmph");
+    let cloud = document.getElementById("cloud");
+    let humidity = document.getElementById("humidity");
+    let pressure = document.getElementById("pressure");
+    let sunrise = document.getElementById("sunrise");
+    let sunset = document.getElementById("sunset");
+    let visibility = document.getElementById("visibility");
+    function weatherApi() {
+      const city_input = document.getElementById("city_input").value;
+      const fetch_city = `https://api.openweathermap.org/data/2.5/weather?q=${city_input}&appid=1e548a0830eb9135eb7d11c51bcd6cc7`;
+      fetch(fetch_city)
+        .then((data) => data.json())
+        .then((data) => {
+          city.innerHTML = `City : ${data.name}`;
+          lat_long.innerHTML = `Latitude : ${data.coord.lat} Longitude : ${data.coord.lon}`;
+          tempreture.innerHTML = `Temp in kelvin : ${data.main.temp}`;
+          feelsLike.innerHTML = `Feels Like : ${data.main.feels_like}`;
+          wind_kmph.innerHTML = `Wind speed in m/s : ${data.wind.speed}`;
+          cloud.innerHTML = `Cloud : ${data.clouds.all}`;
+          humidity.innerHTML = `Humidity : ${data.main.humidity}`;
+          pressure.innerHTML = `Pressure : ${data.main.pressure}`;
+          sunrise.innerHTML = `Sunrise : ${data.sys.sunrise}`;
+          sunset.innerHTML = `Sunset : ${data.sys.sunset}`;
+          visibility.innerHTML = `Visibility : ${data.visibility}`;
+        })
+        .catch((err) => {
+          alert("No data found! enter valid data");
+        });
+    }
+    document.getElementById("fetch").addEventListener("click", weatherApi);
+  </script>
+</html>
