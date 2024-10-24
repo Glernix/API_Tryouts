@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.exchange-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button#convert-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #616461;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+button#convert-btn:hover {
+    background-color: #1bdf09;
+}
+
+.result {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .exchange-container {
+        padding: 30px;
+        max-width: 350px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    input, select {
+        font-size: 14px;
+    }
+
+    button.convert-btn {
+        font-size: 16px;
+    }
+
+    .result {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .exchange-container {
+        padding: 20px;
+        max-width: 300px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    input, select {
+        font-size: 12px;
+    }
+
+    button.convert-btn {
+        font-size: 14px;
+    }
+
+    .result {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Laptops with larger screens */
+@media (min-width: 1024px) {
+    .exchange-container {
+        max-width: 450px;
+        padding: 50px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    input, select {
+        font-size: 18px;
+    }
+
+    button.convert-btn {
+        font-size: 20px;
+    }
+
+    .result {
+        font-size: 20px;
+    }
+}
